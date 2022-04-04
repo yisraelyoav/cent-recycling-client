@@ -1,0 +1,50 @@
+@import "../../colorPlate.css";
+.item {
+  margin: 1rem 0;
+}
+
+.image {
+  align-self: center;
+  width: 90%;
+  height: 15rem;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.image img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.content {
+  color: var(--color-2);
+  text-align: center;
+  padding: 1rem;
+}
+
+.content h2 {
+  margin: 00.5rem;
+  font-size: 1.5rem;
+  color: var(--color-3);
+}
+
+.actions {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.actions button {
+  font: inherit;
+  cursor: pointer;
+  color: var(--color-3);
+  border: 1px solid var(--color-2);
+  background-color: transparent;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+}
+
+.actions button:hover,
+.actions button:active {
+  background-color: var(--color-3);
+  color: var(--color-2);
+}

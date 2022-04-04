@@ -1,0 +1,28 @@
+@import "../../colorPlate.css";
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-1);
+}
+.logo {
+  font-size: 2.2rem;
+  color: var(--color-2);
+  font-weight: bold;
+  margin: 0.5rem;
+}
+.badge {
+  background-color: var(--color-1);
+  color: white;
+  border-radius: 12px;
+  padding: 0 1rem;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 608px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
