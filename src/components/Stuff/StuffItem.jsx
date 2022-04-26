@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../ui/Card";
-import classes from "./MeetupItem.module.css";
-export default function MeetupItem(props) {
+import classes from "./StuffItem.module.css";
+export default function StuffItem(props) {
   return (
     <li className={classes.item}>
       <Card>
@@ -12,10 +12,10 @@ export default function MeetupItem(props) {
           <img src={props.image} alt={props.title} />
         </div>
         <div className={classes.content}>
-          <div>{props.address}</div>
           <div>
             <p>{props.description}</p>
           </div>
+          <div>{props.address}</div>
         </div>
         <div className={classes.actions}>
           <button>Add to fav</button>

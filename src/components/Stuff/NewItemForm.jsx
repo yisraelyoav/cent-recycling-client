@@ -1,7 +1,8 @@
 import { React, useRef } from "react";
+import ImageUploader from "../ui/ImageUploader";
 import Card from "../ui/Card";
-import classes from "./NewMeetupForm.module.css";
-export default function NewMeetupForm() {
+import classes from "./NewItemForm.module.css";
+export default function NewItemForm(props) {
   const titleInputRef = useRef();
   const imageInputRef = useRef();
   const addressInputRef = useRef();
@@ -20,19 +21,20 @@ export default function NewMeetupForm() {
       address: enterdAddress,
       description: enterdDescription,
     };
-    console.log(meetupData);
+    props.onAddMeetup(meetupData);
   }
   return (
     <Card>
       <form className={classes.form} onSubmit={submitHndler}>
         <div className={classes.control}>
-          <label htmlFor="title">Meetup Title</label>
+          <label htmlFor="title">What do you want to giveaway?</label>
           <input type="text" required id="title" ref={titleInputRef} />
         </div>
-        <div className={classes.control}>
+        {/* <div className={classes.control}>
           <label htmlFor="image">Meetup Image</label>
           <input type="url" required id="image" ref={imageInputRef} />
-        </div>
+        </div> */}
+        <ImageUploader />
         <div className={classes.control}>
           <label htmlFor="address">Address</label>
           <input type="text" required id="address" ref={addressInputRef} />

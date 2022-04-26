@@ -15,13 +15,13 @@ export default function MainNavbar(props) {
       {(props.toggleNavbar || screenWidth > 680) && (
         <ul>
           <li>
-            <Link to="/">All Meetups</Link>
+            <Link to="/">Random Stuff</Link>
           </li>
           <li>
-            <Link to="/favorites">Favorites</Link>
+            <Link to="/my-stuff">My Stuff</Link>
           </li>
           <li>
-            <Link to="/new-Meetup">Add New Meetup</Link>
+            <Link to="/new-item">Add New Item</Link>
           </li>
         </ul>
       )}

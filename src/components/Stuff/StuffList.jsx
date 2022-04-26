@@ -1,7 +1,7 @@
 import React from "react";
-import MeetupItem from "./MeetupItem";
-import classes from "./MeetupsList.module.css";
-export default function MeetupsList(props) {
+import MeetupItem from "./StuffItem";
+import classes from "./StuffList.module.css";
+export default function StuffList(props) {
   return (
     <ul className={classes.list}>
       {props.meetups.map((Meetup) => (
