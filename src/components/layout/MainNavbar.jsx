@@ -12,7 +12,7 @@ export default function MainNavbar(props) {
   }, []);
   return (
     <nav className={classes.mainNav}>
-      {(props.toggleNavbar || screenWidth > 680) && (
+      {(props.toggleNavbar || screenWidth >= 609) && (
         <ul>
           <li>
             <Link to="/">Random Stuff</Link>

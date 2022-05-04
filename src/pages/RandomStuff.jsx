@@ -23,7 +23,7 @@ export default function RandomStuffPage() {
   return (
     <div>
       <h2>Random Stuff</h2>
-      <StuffList meetups={DUMMY_DATA} />
+      <StuffList items={DUMMY_DATA} />
     </div>
   );
 }

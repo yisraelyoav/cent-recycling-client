@@ -1,11 +1,13 @@
 import { React, useRef, useState, useEffect } from "react";
 import classes from "./ImageUploader.module.css";
+
 export default function ImageUploader(props) {
   const [image, setImage] = useState();
   const [imagePreview, setImagePreview] = useState();
   const [isValid, setIsValid] = useState(false);
 
   const filePickerRef = useRef();
+
   useEffect(() => {
     if (!image) {
       return;
@@ -33,18 +35,17 @@ export default function ImageUploader(props) {
       setIsValid(false);
       imageIsValid = false;
     }
-    props.onInput(props.id, pickedImage, imageIsValid);
+    props.onAddImage(props.id, pickedImage, imageIsValid);
   };
 
   return (
     <div className={classes.control}>
       <label htmlFor="image">Item Image</label>
       <input
+        id={props.id}
         style={{ display: "none" }}
         type="file"
-        required
         accept=".jpg,.png,.jpeg"
-        id="image"
         ref={filePickerRef}
         onChange={pickedHandler}
       />
@@ -54,9 +55,12 @@ export default function ImageUploader(props) {
           {!imagePreview && <p>Please pick an image</p>}
         </div>
       </div>
+      {!isValid && <p>The image is not valid</p>}
       <div className={classes.buttons}>
         <div className={classes.actions}>
-          <button onClick={pickImageHandler}>Pick Image</button>
+          <button type="button" onClick={pickImageHandler}>
+            Pick Image
+          </button>
         </div>
         <div className={classes.actions}>
           <button>Upload</button>
