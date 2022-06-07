@@ -6,8 +6,8 @@ export default function StuffList(props) {
     <ul className={classes.list}>
       {props.items.map((Item) => (
         <StuffItem
-          key={Item.id}
-          id={Item.id}
+          key={Item._id}
+          id={Item._id}
           title={Item.title}
           image={Item.image}
           address={Item.address}

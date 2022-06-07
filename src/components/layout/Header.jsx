@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <header className={clasess.header}>
       <div className={clasess.logo}>¢ent</div>
-      <MainNavbar toggleNavbar={toggleNavbar} />
+      <MainNavbar toggleNavbar={toggleNavbar} onClick={MainNavHandler} />
       <ToggleButton onClick={MainNavHandler} />
     </header>
   );

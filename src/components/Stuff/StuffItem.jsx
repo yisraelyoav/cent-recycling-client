@@ -18,7 +18,7 @@ export default function StuffItem(props) {
           <div>{props.address}</div>
         </div>
         <div className={classes.actions}>
-          <button>Add to fav</button>
+          <button>Details</button>
         </div>
       </Card>
     </li>

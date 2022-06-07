@@ -11,7 +11,7 @@ export default function MainNavbar(props) {
     window.addEventListener("resize", changeWidth);
   }, []);
   return (
-    <nav className={classes.mainNav}>
+    <nav className={classes.mainNav} onClick={props.onClick}>
       {(props.toggleNavbar || screenWidth >= 609) && (
         <ul>
           <li>
