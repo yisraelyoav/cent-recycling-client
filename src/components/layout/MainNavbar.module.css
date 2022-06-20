@@ -13,17 +13,19 @@
 }
 
 .mainNav a {
-  text-decoration: none;
+  text-decoration:none;
+  font-weight: bold;
   font-size: 1rem;
-  color: var(--color-5);
+  color: var(----tertiaryColor);
   display: block;
 }
 
 .mainNav a:hover,
 .mainNav a:active,
 .mainNav a.active {
-  color: var(--color-4);
-  background-color: var(--color-5);
+  color: var(--backgroundColor);
+  font-size: 1.3rem;
+
 }
 
 @media (max-width: 608px) {

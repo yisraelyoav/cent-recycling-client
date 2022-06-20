@@ -1,5 +1,5 @@
 import React from "react";
-import NewItemForm from "../components/Stuff/NewItemForm";
+import NewItemForm from "../components/Stuff/NewItemForm/NewItemForm";
 
 export default function NewItemPage() {
   function addNewItemHandler(itemData) {

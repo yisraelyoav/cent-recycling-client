@@ -1,6 +1,6 @@
 import { React, useRef } from "react";
-import ImageUploader from "../ui/ImageUploader";
-import Card from "../ui/Card";
+import ImageUploader from "../../../ui/ImageUploader/ImageUploader";
+import Card from "../../../ui/Card/Card";
 import classes from "./NewItemForm.module.css";
 export default function NewItemForm(props) {
   const titleInputRef = useRef();
@@ -38,10 +38,6 @@ export default function NewItemForm(props) {
           <label htmlFor="title">What do you want to giveaway?</label>
           <input type="text" id="title" ref={titleInputRef} />
         </div>
-        {/* <div className={classes.control}>
-          <label htmlFor="image">Meetup Image</label>
-          <input type="url" required id="image" ref={imageInputRef} />
-        </div> */}
         <ImageUploader id="image" onAddImage={addNewImageHandler} />
         <div className={classes.control}>
           <label htmlFor="address">Address</label>

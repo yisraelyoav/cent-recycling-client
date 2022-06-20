@@ -4,16 +4,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--color-1);
+  background-color: var(--primaryColor);
 }
 .logo {
   font-size: 2.2rem;
-  color: var(--color-2);
+  color: var(--secondaryColor);
   font-weight: bold;
   margin: 0.5rem;
+ transition: transform .4s ease-in-out;
+}
+.logo:hover{
+  transform: rotate(360deg)
 }
 .badge {
-  background-color: var(--color-1);
+  background-color: var(--primaryColor);
   color: white;
   border-radius: 12px;
   padding: 0 1rem;

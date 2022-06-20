@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import StuffList from "../components/Stuff/StuffList";
+import StuffList from "../components/Stuff/StuffList/StuffList";
 import axios from "axios";
 
 export default function RandomStuffPage() {

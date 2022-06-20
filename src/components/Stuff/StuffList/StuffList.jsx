@@ -1,5 +1,5 @@
 import React from "react";
-import StuffItem from "./StuffItem";
+import StuffItem from "../StuffItem/StuffItem";
 import classes from "./StuffList.module.css";
 export default function StuffList(props) {
   return (

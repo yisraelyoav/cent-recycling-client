@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../ui/Card";
+import Card from "../../../ui/Card/Card";
 import classes from "./StuffItem.module.css";
 export default function StuffItem(props) {
   return (

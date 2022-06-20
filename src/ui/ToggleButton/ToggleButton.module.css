@@ -16,7 +16,7 @@
 .bar {
   width: 100%;
   height: 0.3rem;
-  background-color: var(--color-2);
+  background-color: var(--secondaryColor);
   border-radius: 30%;
 }
 
