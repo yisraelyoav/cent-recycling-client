@@ -1,5 +1,8 @@
 .formControl {
     margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   
   .formControl label,
@@ -24,8 +27,9 @@
   .formControl input:focus,
   .formControl textarea:focus {
     outline: none;
+    border: 3px solid;
     background: #ebebeb;
-    border-color: #510077;
+    border-color: var(--secondaryColor);
   }
   
   .formControlInvalid label,

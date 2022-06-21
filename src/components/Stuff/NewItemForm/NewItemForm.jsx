@@ -1,54 +1,100 @@
-import { React, useRef } from "react";
-import ImageUploader from "../../../ui/ImageUploader/ImageUploader";
-import Card from "../../../ui/Card/Card";
+import { React, useCallback, useReducer } from "react";
+
 import classes from "./NewItemForm.module.css";
-export default function NewItemForm(props) {
-  const titleInputRef = useRef();
-  const addressInputRef = useRef();
-  const descriptionInputRef = useRef();
-  let enteredImage = null;
-  const addNewImageHandler = (id, image, imageIsValid) => {
-    enteredImage = {
-      id: id,
-      image: image,
-      imageIsValid: imageIsValid,
-    };
-    return enteredImage;
-  };
+import Card from "../../../ui/Card/Card";
+import Input from "../../../ui/FormElements/input/Input";
+import { VALIDATOR_REQUIRE } from "../../../utils/validators";
+import ImageUploader from "../../../ui/ImageUploader/ImageUploader";
 
-  function submitHndler(event) {
+const formReducer = (state, action) => {
+  switch (action.type) {
+    case "INPUT_CHANGE":
+      let formIsValid = true;
+      for (const inputId in state.inputs) {
+        if (inputId === action.inputId) {
+          formIsValid = formIsValid && action.isValid;
+        } else {
+          formIsValid = formIsValid && state.inputs[inputId].isValid;
+        }
+      }
+      return {
+        ...state,
+        inputs: {
+          ...state.inputs,
+          [action.inputId]: { value: action.value, isValid: action.isValid },
+        },
+        isValid: formIsValid,
+      };
+    default:
+      return state;
+  }
+};
+
+export default function NewItemForm() {
+  const [formState, dispatch] = useReducer(formReducer, {
+    inputs: {
+      title: {
+        value: "",
+        isValid: false,
+      },
+      image: {
+        value: "",
+        isValid: false,
+      },
+      address: {
+        value: "",
+        isValid: false,
+      },
+    },
+    isValid: false,
+  });
+
+  const inputHandler = useCallback((id, value, isValid) => {
+    dispatch({
+      type: "INPUT_CHANGE",
+      value: value,
+      isValid: isValid,
+      inputId: id,
+    });
+  }, []);
+
+  function submitNewItemHandler(event) {
     event.preventDefault();
-    const enterdTitle = titleInputRef.current.value;
-    const enterdAddress = addressInputRef.current.value;
-    const enterdDescription = descriptionInputRef.current.value;
-
-    const itemData = {
-      title: enterdTitle,
-      imageObj: enteredImage,
-      address: enterdAddress,
-      description: enterdDescription,
-    };
-
-    props.onAddItem(itemData);
   }
   return (
     <Card>
-      <form className={classes.form} onSubmit={submitHndler}>
-        <div className={classes.control}>
-          <label htmlFor="title">What do you want to giveaway?</label>
-          <input type="text" id="title" ref={titleInputRef} />
-        </div>
-        <ImageUploader id="image" onAddImage={addNewImageHandler} />
-        <div className={classes.control}>
-          <label htmlFor="address">Address</label>
-          <input type="text" id="address" ref={addressInputRef} />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor="description">Description</label>
-          <textarea id="description" row="5" ref={descriptionInputRef} />
-        </div>
-        <div className={classes.actions}>
-          <button>Let's recycle</button>
+      <form onSubmit={submitNewItemHandler} className={classes.center}>
+        <Input
+          id="title"
+          element="input"
+          type="text"
+          lable="What do you want to giveaway?"
+          validators={[VALIDATOR_REQUIRE()]}
+          onInput={inputHandler}
+          errorText="Title is required."
+        ></Input>
+        <ImageUploader id="image" onInput={inputHandler}></ImageUploader>
+        <Input
+          id="address"
+          element="input"
+          type="text"
+          lable="Address?"
+          validators={[VALIDATOR_REQUIRE()]}
+          onInput={inputHandler}
+          errorText="Address is required."
+        ></Input>
+        <Input
+          id="description"
+          element="textArea"
+          lable="Description?"
+          onInput={inputHandler}
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter some description."
+        ></Input>
+        <div className={`${classes.actions} ${classes.center}`}>
+          <button type="submit" disabled={!formState.isValid}>
+            Let's recycle ♻
+          </button>
         </div>
       </form>
     </Card>

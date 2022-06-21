@@ -1,8 +1,10 @@
 import React, { Fragment, useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+import { CSSTransition } from "react-transition-group";
 
 import classes from "./MainNavbar.module.css";
+import { AuthContext } from "../../context/AuthContext";
+
 export default function MainNavbar(props) {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const auth = useContext(AuthContext);
@@ -10,32 +12,39 @@ export default function MainNavbar(props) {
     const changeWidth = () => {
       setScreenWidth(window.innerWidth);
     };
-
     window.addEventListener("resize", changeWidth);
   }, []);
   return (
     <nav className={classes.mainNav} onClick={props.onClick}>
       {(props.toggleNavbar || screenWidth >= 609) && (
-        <ul>
-          <li>
-            <Link to="/">Random Stuff</Link>
-          </li>
-          {!auth.isLLoggedIn && (
+        <CSSTransition
+          in={props.toggleNavbar || screenWidth >= 609}
+          mountOnEnter
+          unmountOnExit
+          timeout={200}
+          classNames="modal"
+        >
+          <ul>
             <li>
-              <Link to="/auth">Log-In</Link>
+              <Link to="/">Random Stuff</Link>
             </li>
-          )}
-          {auth.isLLoggedIn && (
-            <Fragment>
+            {!auth.isLLoggedIn && (
               <li>
-                <Link to="/my-stuff">My Stuff</Link>
+                <Link to="/auth">Log-In</Link>
               </li>
-              <li>
-                <Link to="/new-item">Add New Item</Link>
-              </li>
-            </Fragment>
-          )}
-        </ul>
+            )}
+            {auth.isLLoggedIn && (
+              <Fragment>
+                <li>
+                  <Link to="/my-stuff">My Stuff</Link>
+                </li>
+                <li>
+                  <Link to="/new-item">Add New Item</Link>
+                </li>
+              </Fragment>
+            )}
+          </ul>
+        </CSSTransition>
       )}
     </nav>
   );

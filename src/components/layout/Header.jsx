@@ -1,4 +1,6 @@
 import { React, useState } from "react";
+import ReactDOM from "react-dom";
+
 import ToggleButton from "../../ui/ToggleButton/ToggleButton";
 import clasess from "./Header.module.css";
 import MainNavbar from "./MainNavbar";
@@ -8,11 +10,15 @@ export default function Header() {
   function MainNavHandler() {
     setToggleNavbar(!toggleNavbar);
   }
-  return (
+
+  const content = (
     <header className={clasess.header}>
       <div className={clasess.logo}>¢ent</div>
+
       <MainNavbar toggleNavbar={toggleNavbar} onClick={MainNavHandler} />
       <ToggleButton onClick={MainNavHandler} />
     </header>
   );
+
+  return ReactDOM.createPortal(content, document.getElementById("header-hook"));
 }

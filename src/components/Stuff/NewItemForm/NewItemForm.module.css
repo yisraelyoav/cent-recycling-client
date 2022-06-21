@@ -1,3 +1,10 @@
+.center{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  }
 .form {
   display: flex;
   flex-direction: column;
@@ -33,6 +40,7 @@
 
 .actions button {
   font: inherit;
+  margin-bottom: 1rem;
   cursor: pointer;
   color: var(--headlinesColor);
   border: 1px solid var(--secondaryColor);
@@ -45,4 +53,17 @@
 .actions button:active {
   background-color: var(--headlinesColor);
   color: var(--secondaryColor);
+}
+.actions button:disabled{
+  background: #ccc;
+  color: #979797;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+.actions button:hover:disabled,
+.actions  button:active:disabled {
+  background: #ccc;
+  color: #979797;
+  border-color: #ccc;
+  cursor: not-allowed;
 }
