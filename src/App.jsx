@@ -9,6 +9,7 @@ import MyStuffPage from "./pages/MyStuff";
 import NewItemPage from "./pages/NewItem";
 
 function App() {
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const login = useCallback(() => {
     setIsLoggedIn(true);

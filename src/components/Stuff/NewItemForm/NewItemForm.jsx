@@ -3,7 +3,10 @@ import { React, useCallback, useReducer } from "react";
 import classes from "./NewItemForm.module.css";
 import Card from "../../../ui/Card/Card";
 import Input from "../../../ui/FormElements/input/Input";
-import { VALIDATOR_REQUIRE } from "../../../utils/validators";
+import {
+  VALIDATOR_REQUIRE,
+  VALIDATOR_MAXLENGTH,
+} from "../../../utils/validators";
 import ImageUploader from "../../../ui/ImageUploader/ImageUploader";
 
 const formReducer = (state, action) => {
@@ -45,6 +48,10 @@ export default function NewItemForm() {
         value: "",
         isValid: false,
       },
+      description: {
+        value: "",
+        isValid: true,
+      },
     },
     isValid: false,
   });
@@ -60,6 +67,7 @@ export default function NewItemForm() {
 
   function submitNewItemHandler(event) {
     event.preventDefault();
+    console.log(formState.inputs);
   }
   return (
     <Card>
@@ -88,8 +96,8 @@ export default function NewItemForm() {
           element="textArea"
           lable="Description?"
           onInput={inputHandler}
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter some description."
+          validators={[VALIDATOR_MAXLENGTH(200)]}
+          errorText="Not allowed more than 200 characters."
         ></Input>
         <div className={`${classes.actions} ${classes.center}`}>
           <button type="submit" disabled={!formState.isValid}>

@@ -47,7 +47,9 @@ export default function StuffItem(props) {
         <StuffDetails
           image={props.image}
           address={props.address}
+          coordinates={props.coordinates}
           description={props.description}
+          location={props.location}
         />
       </Modal>
     </Fragment>

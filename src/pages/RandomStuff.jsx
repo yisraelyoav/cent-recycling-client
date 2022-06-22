@@ -13,6 +13,12 @@ export default function RandomStuffPage() {
       setLoadedItems(resData);
     };
     sendRequest();
+    // async function conectToGoogleMapsApi() {
+    //   await axios.get(
+    //     `https://maps.googleapis.com/maps/api/js?key=${process.env.API_KEY}`
+    //   );
+    // }
+    // conectToGoogleMapsApi();
   }, []);
 
   return (

@@ -34,6 +34,7 @@ const Input = (props) => {
   useEffect(() => {
     onInput(id, value, isValid);
   }, [id, value, isValid, onInput]);
+
   const changeHandler = (event) => {
     dispatch({
       type: "CHANGE",
