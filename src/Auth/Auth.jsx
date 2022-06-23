@@ -1,12 +1,7 @@
-import React, {
-  Fragment,
-  useCallback,
-  useReducer,
-  useContext,
-  useState,
-} from "react";
+import React, { Fragment, useContext, useState } from "react";
 
 import { AuthContext } from "../context/AuthContext";
+import { useForm } from "../hooks/form-hook";
 import Input from "../ui/FormElements/input/Input";
 import {
   VALIDATOR_EMAIL,
@@ -15,95 +10,57 @@ import {
 } from "../utils/validators";
 import classes from "./Auth.module.css";
 
-const formReducer = (state, action) => {
-  switch (action.type) {
-    case "INPUT_CHANGE":
-      let formIsValid = true;
-      for (const inputId in state.inputs) {
-        if (inputId === action.inputId) {
-          formIsValid = formIsValid && action.isValid;
-        } else {
-          formIsValid = formIsValid && state.inputs[inputId].isValid;
-        }
-      }
-      return {
-        ...state,
-        inputs: {
-          ...state.inputs,
-          [action.inputId]: { value: action.value, isValid: action.isValid },
-        },
-        isValid: formIsValid,
-      };
-    default:
-      return state;
-  }
-};
-
 export default function Login() {
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
-  const [formData, setFormData] = useState({
-    email: {
-      value: "",
-      isValid: false,
-    },
-    password: {
-      value: "",
-      isValid: false,
-    },
-  });
-  const [formState, dispatch] = useReducer(formReducer, {
-    inputs: formData,
-    isValid: false,
-  });
 
-  const inputHandler = useCallback((id, value, isValid) => {
-    dispatch({
-      type: "INPUT_CHANGE",
-      value: value,
-      isValid: isValid,
-      inputId: id,
-    });
-  }, []);
+  const [formState, inputHandler, setFormData] = useForm(
+    {
+      email: {
+        value: "",
+        isValid: false,
+      },
+      password: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
 
+  const switchModeHandler = (event) => {
+    event.preventDefault();
+
+    if (!isLoginMode) {
+      setFormData(
+        {
+          ...formState.inputs,
+          fName: undefined,
+          lName: undefined,
+        },
+        formState.inputs.email.isValid && formState.inputs.password.isValid
+      );
+    } else {
+      setFormData(
+        {
+          ...formState.inputs,
+          fName: {
+            value: "",
+            isValid: false,
+          },
+          lName: {
+            value: "",
+            isValid: false,
+          },
+        },
+        false
+      );
+    }
+    setIsLoginMode((prevMode) => !prevMode);
+  };
   const loginSubmitHandler = async (event) => {
     event.preventDefault();
     auth.login();
-  };
-  const switchModeHandler = (event) => {
-    event.preventDefault();
-    if (isLoginMode) {
-      setFormData({
-        fName: {
-          value: "",
-          isValid: false,
-        },
-        lName: {
-          value: "",
-          isValid: false,
-        },
-        email: {
-          value: "",
-          isValid: false,
-        },
-        password: {
-          value: "",
-          isValid: false,
-        },
-      });
-    } else {
-      setFormData({
-        email: {
-          value: "",
-          isValid: false,
-        },
-        password: {
-          value: "",
-          isValid: false,
-        },
-      });
-    }
-    setIsLoginMode((prevMode) => !prevMode);
   };
   return (
     <form className={classes.loginForm} onSubmit={loginSubmitHandler}>
