@@ -5,20 +5,7 @@ const VALIDATOR_TYPE_MIN = "MIN";
 const VALIDATOR_TYPE_MAX = "MAX";
 const VALIDATOR_TYPE_EMAIL = "EMAIL";
 const VALIDATOR_TYPE_FILE = "FILE";
-
-export const VALIDATOR_REQUIRE = () => ({ type: VALIDATOR_TYPE_REQUIRE });
-export const VALIDATOR_FILE = () => ({ type: VALIDATOR_TYPE_FILE });
-export const VALIDATOR_MINLENGTH = (val) => ({
-  type: VALIDATOR_TYPE_MINLENGTH,
-  val: val,
-});
-export const VALIDATOR_MAXLENGTH = (val) => ({
-  type: VALIDATOR_TYPE_MAXLENGTH,
-  val: val,
-});
-export const VALIDATOR_MIN = (val) => ({ type: VALIDATOR_TYPE_MIN, val: val });
-export const VALIDATOR_MAX = (val) => ({ type: VALIDATOR_TYPE_MAX, val: val });
-export const VALIDATOR_EMAIL = () => ({ type: VALIDATOR_TYPE_EMAIL });
+const VALIDATOR_TYPE_PHONE = "PHONE";
 
 export const validate = (value, validators) => {
   let isValid = true;
@@ -41,6 +28,26 @@ export const validate = (value, validators) => {
     if (validator.type === VALIDATOR_TYPE_EMAIL) {
       isValid = isValid && /^\S+@\S+\.\S+$/.test(value);
     }
+    if (validator.type === VALIDATOR_TYPE_PHONE) {
+      isValid =
+        isValid &&
+        /^\+?(972|0)(-)?0?(([23489]{1}\d{7})|[5]{1}\d{8})$/.test(value);
+    }
   }
   return isValid;
 };
+
+export const VALIDATOR_REQUIRE = () => ({ type: VALIDATOR_TYPE_REQUIRE });
+export const VALIDATOR_FILE = () => ({ type: VALIDATOR_TYPE_FILE });
+export const VALIDATOR_MINLENGTH = (val) => ({
+  type: VALIDATOR_TYPE_MINLENGTH,
+  val: val,
+});
+export const VALIDATOR_MAXLENGTH = (val) => ({
+  type: VALIDATOR_TYPE_MAXLENGTH,
+  val: val,
+});
+export const VALIDATOR_MIN = (val) => ({ type: VALIDATOR_TYPE_MIN, val: val });
+export const VALIDATOR_MAX = (val) => ({ type: VALIDATOR_TYPE_MAX, val: val });
+export const VALIDATOR_EMAIL = () => ({ type: VALIDATOR_TYPE_EMAIL });
+export const VALIDATOR_PHONE = () => ({ type: VALIDATOR_TYPE_PHONE });

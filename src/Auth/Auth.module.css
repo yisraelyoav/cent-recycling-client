@@ -1,6 +1,8 @@
 .loginForm {
     list-style: none;
-    margin-top: 6rem;    padding: 1rem;
+    margin-top: 30%;
+    margin-left: 5%;
+        padding: 1rem;
     width: 90%;
     max-width: 40rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
@@ -20,7 +22,7 @@
     font: inherit;
     cursor: pointer;
     color: var(--primaryColor);
-    border: 1px solid var(--tertiaryColor);
+    border: 1px solid var(--primaryColor);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     background-color: transparent;
     padding: 0.5rem 1.5rem;
@@ -30,8 +32,9 @@
   .actions button:hover,
   .actions button:active {
     background-color: var(--primaryColor);
-    color: var(--tertiaryColor);
-    box-shadow: 0 1px 8px rgba(255, 255, 255, 0.851);
+    color: var(--secondaryColor);
+    border:1px solid var(--secondaryColor);
+    box-shadow: 0 1px 8px var(--primaryColor);
   
   }
 .actions button:disabled,
