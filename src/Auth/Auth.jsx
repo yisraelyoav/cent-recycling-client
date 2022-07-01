@@ -11,6 +11,7 @@ import {
   VALIDATOR_PHONE,
 } from "../utils/validators";
 import classes from "./Auth.module.css";
+import ErrorModal from "../ui/ErrorModal/ErrorModal";
 
 export default function Login() {
   const auth = useContext(AuthContext);
@@ -65,6 +66,27 @@ export default function Login() {
   const loginSubmitHandler = async (event) => {
     event.preventDefault();
     if (isLoginMode) {
+      try {
+        setIsLoading(true);
+        const response = await fetch("http://localhost:5000/api/users/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: formState.inputs.email.value,
+            password: formState.inputs.password.value,
+          }),
+        });
+        const responseData = await response.json();
+        if (!response.ok) {
+          throw new Error(responseData.message);
+        }
+        setIsLoading(false);
+        auth.login();
+      } catch (error) {
+        console.log("response is not ok");
+        setError(error.message);
+        setIsLoading(false);
+      }
     } else {
       try {
         setIsLoading(true);
@@ -80,84 +102,97 @@ export default function Login() {
           }),
         });
         const responseData = await response.json();
-        console.log(responseData);
-      } catch (err) {
+        if (!response.ok) {
+          throw new Error(responseData.message);
+        }
         setIsLoading(false);
-        setError(err.massage);
-        console.log(err);
+        auth.login();
+      } catch (error) {
+        console.log("response is not ok");
+        setError(error.message);
+        setIsLoading(false);
       }
     }
-    setIsLoading(false);
-    auth.login();
+  };
+  const ErrorHandler = () => {
+    setError(null);
   };
   return (
-    <form className={classes.loginForm} onSubmit={loginSubmitHandler}>
-      {isLoading && <Loader isOverlay />}
-      <h1> {isLoginMode ? "Login" : "Sign-Up"}</h1>
-      <hr />
-      {!isLoginMode && (
-        <Fragment>
-          <Input
-            id="fName"
-            element="input"
-            type="text"
-            lable="First Name"
-            validators={[VALIDATOR_REQUIRE()]}
-            onInput={inputHandler}
-            errorText="First name is required."
-          ></Input>
-          <Input
-            id="lName"
-            element="input"
-            type="text"
-            lable="Last Name"
-            validators={[VALIDATOR_REQUIRE()]}
-            onInput={inputHandler}
-            errorText="Last name is required."
-          ></Input>
-          <Input
-            id="phone"
-            element="input"
-            type="text"
-            lable="phone"
-            validators={[VALIDATOR_PHONE()]}
-            onInput={inputHandler}
-            errorText="Phone/cellphone is required."
-          ></Input>
-        </Fragment>
-      )}
-      <Input
-        id="email"
-        element="input"
-        type="email"
-        lable="E-Mail"
-        validators={[VALIDATOR_EMAIL()]}
-        onInput={inputHandler}
-        errorText={
-          isLoginMode ? "Please enter your email" : "Please enter valid email."
-        }
-      >
-        <i class="material-symbols-outlined">visibility</i>
-      </Input>
-      <Input
-        id="password"
-        element="input"
-        type="password"
-        lable="Password"
-        onInput={inputHandler}
-        validators={[VALIDATOR_MINLENGTH(6)]}
-        errorText={
-          isLoginMode ? "Please enter your password." : "Min 6 characters"
-        }
-      ></Input>
-      <div className={classes.actions}>
-        <button type="submit" disabled={!formState.isValid}>
-          {isLoginMode ? "Login" : "Sign-Up"}
+    <Fragment>
+      <ErrorModal error={error} onClear={ErrorHandler} />
+      <form className={classes.loginForm} onSubmit={loginSubmitHandler}>
+        {isLoading && <Loader isOverlay />}
+        <h1> {isLoginMode ? "Login" : "Sign-Up"}</h1>
+        <hr />
+        {!isLoginMode && (
+          <Fragment>
+            <Input
+              id="fName"
+              element="input"
+              type="text"
+              lable="First Name"
+              validators={[VALIDATOR_REQUIRE()]}
+              onInput={inputHandler}
+              errorText="First name is required."
+            ></Input>
+            <Input
+              id="lName"
+              element="input"
+              type="text"
+              lable="Last Name"
+              validators={[VALIDATOR_REQUIRE()]}
+              onInput={inputHandler}
+              errorText="Last name is required."
+            ></Input>
+            <Input
+              id="phone"
+              element="input"
+              type="text"
+              lable="phone"
+              validators={[VALIDATOR_PHONE()]}
+              onInput={inputHandler}
+              errorText="Phone/cellphone is required."
+            ></Input>
+          </Fragment>
+        )}
+        <Input
+          id="email"
+          element="input"
+          type="email"
+          lable="E-Mail"
+          validators={[VALIDATOR_EMAIL()]}
+          onInput={inputHandler}
+          errorText={
+            isLoginMode
+              ? "Please enter your email"
+              : "Please enter valid email."
+          }
+        >
+          <i class="material-symbols-outlined">visibility</i>
+        </Input>
+        <Input
+          id="password"
+          element="input"
+          type="password"
+          lable="Password"
+          onInput={inputHandler}
+          validators={[VALIDATOR_MINLENGTH(6)]}
+          errorText={
+            isLoginMode ? "Please enter your password." : "Min 6 characters"
+          }
+        ></Input>
+        <div className={classes.actions}>
+          <button type="submit" disabled={!formState.isValid}>
+            {isLoginMode ? "Login" : "Sign-Up"}
+          </button>
+        </div>
+        <button
+          className={classes.switchModeButton}
+          onClick={switchModeHandler}
+        >
+          {isLoginMode ? " Create New User" : "Switch to login"}
         </button>
-      </div>
-      <button className={classes.switchModeButton} onClick={switchModeHandler}>
-        {isLoginMode ? " Create New User" : "Switch to login"}
-      </button>
-    </form>
+      </form>
+    </Fragment>
   );
 }
