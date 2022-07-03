@@ -1,30 +1,44 @@
-import { React, useEffect, useState } from "react";
+import { Fragment, React, useEffect, useState } from "react";
 import StuffList from "../components/Stuff/StuffList/StuffList";
 import axios from "axios";
+import Loader from "../ui/Loader/Loader";
+import ErrorModal from "../ui/ErrorModal/ErrorModal";
 
 export default function RandomStuffPage() {
   const [loadedItems, setLoadedItems] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    const sendRequest = async () => {
+    const sendRequestClient = async () => {
+      setIsLoading(true);
       const res = await axios.get("http://localhost:5000/api/items");
       const resData = await res.data;
       console.log(resData);
       setLoadedItems(resData);
+      setIsLoading(false);
+      if (!res.ok) {
+        throw new Error(resData.message);
+      }
     };
-    sendRequest();
-    // async function conectToGoogleMapsApi() {
-    //   await axios.get(
-    //     `https://maps.googleapis.com/maps/api/js?key=${process.env.API_KEY}`
-    //   );
-    // }
-    // conectToGoogleMapsApi();
+
+    try {
+      sendRequestClient();
+    } catch (err) {
+      setError(err);
+      setIsLoading(false);
+    }
   }, []);
 
+  const ErrorHandler = () => {
+    setError(null);
+  };
   return (
-    <div>
+    <Fragment>
+      <ErrorModal error={error} onClear={ErrorHandler} />
+      {isLoading && <Loader asOverlay />}
       <h2>Random Stuff</h2>
       {loadedItems && <StuffList items={loadedItems} />}
-    </div>
+    </Fragment>
   );
 }

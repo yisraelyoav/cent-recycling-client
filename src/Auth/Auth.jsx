@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import Loader from "../ui/Loader/Loader";
 import { useForm } from "../hooks/form-hook";
 import Input from "../ui/FormElements/input/Input";
+import { useHttpRequest } from "../hooks/http-hook";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
@@ -13,12 +14,10 @@ import {
 import classes from "./Auth.module.css";
 import ErrorModal from "../ui/ErrorModal/ErrorModal";
 
-export default function Login() {
+export default function Auth() {
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-
+  const { isLoading, error, clearError, sendRequest } = useHttpRequest();
   const [formState, inputHandler, setFormData] = useForm(
     {
       email: {
@@ -67,61 +66,42 @@ export default function Login() {
     event.preventDefault();
     if (isLoginMode) {
       try {
-        setIsLoading(true);
-        const response = await fetch("http://localhost:5000/api/users/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
+        const res = await sendRequest(
+          "http://localhost:5000/api/users/login",
+          "POST",
+          JSON.stringify({
             email: formState.inputs.email.value,
             password: formState.inputs.password.value,
           }),
-        });
-        const responseData = await response.json();
-        if (!response.ok) {
-          throw new Error(responseData.message);
-        }
-        setIsLoading(false);
+          { "Content-Type": "application/json" }
+        );
         auth.login();
-      } catch (error) {
-        console.log("response is not ok");
-        setError(error.message);
-        setIsLoading(false);
-      }
+        console.log(res);
+      } catch (err) {}
     } else {
       try {
-        setIsLoading(true);
-        const response = await fetch("http://localhost:5000/api/users/signup", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
+        await sendRequest(
+          "http://localhost:5000/api/users/signup",
+          "POST",
+          JSON.stringify({
             fName: formState.inputs.fName.value,
             lName: formState.inputs.lName.value,
             email: formState.inputs.email.value,
             phone: formState.inputs.phone.value,
             password: formState.inputs.password.value,
           }),
-        });
-        const responseData = await response.json();
-        if (!response.ok) {
-          throw new Error(responseData.message);
-        }
-        setIsLoading(false);
+          { "Content-Type": "application/json" }
+        );
         auth.login();
-      } catch (error) {
-        console.log("response is not ok");
-        setError(error.message);
-        setIsLoading(false);
-      }
+      } catch (error) {}
     }
   };
-  const ErrorHandler = () => {
-    setError(null);
-  };
+
   return (
     <Fragment>
-      <ErrorModal error={error} onClear={ErrorHandler} />
+      <ErrorModal error={error} onClear={clearError} />
       <form className={classes.loginForm} onSubmit={loginSubmitHandler}>
-        {isLoading && <Loader isOverlay />}
+        {isLoading && <Loader asOverlay />}
         <h1> {isLoginMode ? "Login" : "Sign-Up"}</h1>
         <hr />
         {!isLoginMode && (
