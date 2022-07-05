@@ -28,6 +28,21 @@
   font-size: 1.3rem;
 
 }
+.logoutButton{
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--tertiaryColor);
+  display: block;
+}
+ .logoutButton:hover,
+ .logoutButton:active,
+ .logoutButton.active{
+  color: var(--backgroundColor);
+  font-size: 1.3rem;
+  text-decoration-color:var(--backgroundColor) ;
+ }
 
 @media (max-width: 608px) {
   .mainNav {
@@ -44,6 +59,7 @@
     display: flex;
     width: 100%;
     text-decoration: underline ;
+    text-decoration-color:var(--tertiaryColor);
     justify-content: center;
     text-align: center;
     padding: 0.2rem 0.5rem;
@@ -55,5 +71,13 @@
   .mainNav a {
     width: 100%;
     font-size: 1.25rem;
+  }
+  .logoutButton{
+    width: 100%;
+    font-size: 1.25rem;
+    
+  }
+  .mainNav li:hover{
+    text-decoration-color:var(--backgroundColor);
   }
 }

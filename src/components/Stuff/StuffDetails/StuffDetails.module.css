@@ -11,3 +11,10 @@
     border-radius: 15px;
     object-fit: cover;
   }
+  .ownerDetails{
+    display:flex;
+    justify-content: center;
+  }
+  .ownerName{
+   padding-inline:1rem
+  }

@@ -33,6 +33,11 @@ export default function MainNavbar(props) {
               <li>
                 <Link to="/new-item">Add New Item</Link>
               </li>
+              <li>
+                <button className={classes.logoutButton} onClick={auth.logout}>
+                  Logout
+                </button>
+              </li>
             </Fragment>
           )}
         </ul>

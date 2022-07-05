@@ -11,9 +11,9 @@
 }
 
 .image img {
+  border-radius: 6px;
   width: 70%;
-  border-radius: 15px;
-  object-fit: cover;
+  /* object-fit: contain; */
 }
 
 .content {

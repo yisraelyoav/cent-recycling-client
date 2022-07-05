@@ -9,6 +9,7 @@ body {
   margin: 0;
   background-color: var(--backgroundColor);
   color: var(--headlinesColor);
+  min-width: 200px;
 }
 
 h1 {
