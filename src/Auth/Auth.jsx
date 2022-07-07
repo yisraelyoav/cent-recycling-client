@@ -1,5 +1,4 @@
 import React, { Fragment, useContext, useState } from "react";
-
 import { AuthContext } from "../context/AuthContext";
 import Loader from "../ui/Loader/Loader";
 import { useForm } from "../hooks/form-hook";
@@ -75,12 +74,11 @@ export default function Auth() {
           }),
           { "Content-Type": "application/json" }
         );
-        auth.login();
-        console.log(res);
+        auth.login(res.userID, res.token);
       } catch (err) {}
     } else {
       try {
-        await sendRequest(
+        const res = await sendRequest(
           "http://localhost:5000/api/users/signup",
           "POST",
           JSON.stringify({
@@ -92,7 +90,7 @@ export default function Auth() {
           }),
           { "Content-Type": "application/json" }
         );
-        auth.login();
+        auth.login(res.userID, res.token);
       } catch (error) {}
     }
   };

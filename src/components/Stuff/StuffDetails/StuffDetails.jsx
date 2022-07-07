@@ -5,7 +5,7 @@ export default function StuffDetails(props) {
   return (
     <div>
       <div className={classes.image}>
-        <img src={props.image} alt={props.title} />
+        <img src={`http://localhost:5000/${props.image}`} alt={props.title} />
       </div>
       <p>{props.description}</p>
       <div className={classes.ownerDetails}>

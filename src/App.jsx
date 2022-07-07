@@ -9,17 +9,22 @@ import MyStuffPage from "./pages/MyStuff";
 import NewItemPage from "./pages/NewItem";
 
 function App() {
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const login = useCallback(() => {
-    setIsLoggedIn(true);
+  const [token, setToken] = useState(false);
+  const [userID, setUserID] = useState(false);
+  const login = useCallback((userID, token) => {
+    setToken(token);
+    console.log(token);
+    setUserID(userID);
+    console.log(userID);
   }, []);
+
   const logout = useCallback(() => {
-    setIsLoggedIn(false);
+    setToken(null);
+    setUserID(null);
   }, []);
 
   let routes;
-  if (isLoggedIn) {
+  if (token) {
     routes = (
       <Routes>
         <Route path="/" element={<RandomStuffPage />} />
@@ -40,7 +45,13 @@ function App() {
 
   return (
     <AuthContext.Provider
-      value={{ isLLoggedIn: isLoggedIn, login: login, logout: logout }}
+      value={{
+        isLLoggedIn: !!token,
+        token: token,
+        userID: userID,
+        login: login,
+        logout: logout,
+      }}
     >
       <Layout>{routes}</Layout>
     </AuthContext.Provider>

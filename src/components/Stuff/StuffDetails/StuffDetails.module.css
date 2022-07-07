@@ -1,13 +1,13 @@
 .image {
     display: flex;
     width: 100%;
-    height: 6rem;
+    height: 8rem;
     overflow: hidden;
     justify-content: center;
   }
   
   .image img {
-    width: 30%;
+    width: 45%;
     border-radius: 15px;
     object-fit: cover;
   }
@@ -17,4 +17,7 @@
   }
   .ownerName{
    padding-inline:1rem
+  }
+  h4,p{
+    margin:0.3rem
   }

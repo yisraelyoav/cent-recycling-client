@@ -22,7 +22,10 @@ export default function StuffItem(props) {
             <h2>{props.title}</h2>
           </div>
           <div className={classes.image}>
-            <img src={props.image} alt={props.title} />
+            <img
+              src={`http://localhost:5000/${props.image}`}
+              alt={props.title}
+            />
           </div>
           <div className={classes.content}>
             <div>
