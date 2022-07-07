@@ -41,7 +41,6 @@ export default function NewItemForm() {
     },
     false
   );
-
   const submitNewItemHandler = async (event) => {
     event.preventDefault();
     console.log(formState.inputs);

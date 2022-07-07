@@ -7,9 +7,8 @@
   }
   
   .image img {
-    width: 45%;
+    width: 40%;
     border-radius: 15px;
-    object-fit: cover;
   }
   .ownerDetails{
     display:flex;

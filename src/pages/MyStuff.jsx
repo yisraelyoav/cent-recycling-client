@@ -14,9 +14,9 @@ export default function MyStuff() {
   useEffect(() => {
     const getItemsByUserID = async () => {
       const resData = await sendRequest(
-        "http://localhost:5000/api/items",
+        "http://localhost:5000/api/items/byuser/" + auth.userID,
         "GET",
-        {},
+        null,
         {
           authorization: "Bearer " + auth.token,
         }
@@ -28,7 +28,7 @@ export default function MyStuff() {
     try {
       getItemsByUserID();
     } catch (err) {}
-  }, [auth.token, sendRequest]);
+  }, [auth.token, sendRequest, auth.userID]);
 
   return (
     <Fragment>
