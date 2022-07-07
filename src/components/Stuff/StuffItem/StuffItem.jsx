@@ -52,6 +52,7 @@ export default function StuffItem(props) {
           address={props.address}
           description={props.description}
           location={props.location}
+          owner={props.owner}
         />
       </Modal>
     </Fragment>

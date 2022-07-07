@@ -34,7 +34,7 @@ export default function MyStuff() {
     <Fragment>
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && <Loader asOverlay />}
-      <h2>Random Stuff</h2>
+      <h2>My Stuff</h2>
       {loadedItems && <StuffList items={loadedItems} />}
     </Fragment>
   );

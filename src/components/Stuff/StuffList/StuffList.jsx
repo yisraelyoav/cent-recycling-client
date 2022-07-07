@@ -13,6 +13,7 @@ export default function StuffList(props) {
           address={Item.address}
           description={Item.description}
           location={Item.location}
+          owner={Item.owner}
         />
       ))}
     </ul>

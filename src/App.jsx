@@ -1,5 +1,5 @@
+import { useState, useCallback, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { useState, useCallback } from "react";
 
 import { AuthContext } from "./context/AuthContext";
 import Layout from "./components/layout/Layout";
@@ -11,17 +11,27 @@ import NewItemPage from "./pages/NewItem";
 function App() {
   const [token, setToken] = useState(false);
   const [userID, setUserID] = useState(false);
+
   const login = useCallback((userID, token) => {
     setToken(token);
-    console.log(token);
     setUserID(userID);
-    console.log(userID);
+    localStorage.setItem(
+      "userData",
+      JSON.stringify({ userID: userID, token: token })
+    );
   }, []);
 
   const logout = useCallback(() => {
     setToken(null);
     setUserID(null);
+    localStorage.removeItem("userData");
   }, []);
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem("userData"));
+    if (storedData && storedData.token) {
+      login(storedData.userID, storedData.token);
+    }
+  }, [login]);
 
   let routes;
   if (token) {
