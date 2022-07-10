@@ -33,7 +33,7 @@ const Modal = (props) => {
     <React.Fragment>
       {props.show && <Backdrop onClick={props.onCancel} />}
       <CSSTransition
-        in={props.show}
+        in={!!props.show}
         mountOnEnter
         unmountOnExit
         timeout={200}

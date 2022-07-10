@@ -13,8 +13,6 @@ export default function Header() {
   function MainNavHandler() {
     setToggleNavbar(!toggleNavbar);
   }
-  console.log(auth.fName);
-  console.log(auth.userID);
   const content = (
     <header className={clasess.header}>
       <div className={clasess.headerHead}>
