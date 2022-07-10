@@ -4,7 +4,9 @@ import classes from "./StuffItem.module.css";
 import Card from "../../../ui/Card/Card";
 import Modal from "../../../ui/Modal/Modal";
 import StuffDetails from "../StuffDetails/StuffDetails";
+import { Link } from "react-router-dom";
 export default function StuffItem(props) {
+  const { image, address, location, owner, description, title } = props;
   const [showDetailsComponnet, setShowDetailsComponnet] = useState(false);
 
   const openDetailsComponnet = () => {
@@ -14,24 +16,23 @@ export default function StuffItem(props) {
     setShowDetailsComponnet(false);
   };
 
+  const editItemHandler = () => {};
+
   return (
     <Fragment>
       <li className={classes.item}>
         <Card>
           <div className={classes.content}>
-            <h2>{props.title}</h2>
+            <h2>{title}</h2>
           </div>
           <div className={classes.image}>
-            <img
-              src={`http://localhost:5000/${props.image}`}
-              alt={props.title}
-            />
+            <img src={`http://localhost:5000/${image}`} alt={title} />
           </div>
           <div className={classes.content}>
             <div>
-              <p>{props.description}</p>
+              <p>{description}</p>
             </div>
-            <div>{props.address}</div>
+            <div>{address}</div>
           </div>
           <div className={classes.actions}>
             <button onClick={openDetailsComponnet}>Details</button>
@@ -42,17 +43,25 @@ export default function StuffItem(props) {
       <Modal
         show={showDetailsComponnet}
         onCancel={closeDetailsComponnet}
-        header={props.title}
+        header={title}
         contentClass={classes.content}
         footerClass={classes.actions}
-        footer={<button onClick={closeDetailsComponnet}>Close</button>}
+        footer={
+          <div>
+            <Link to="/update-item">
+              <button onClick={editItemHandler}>Edit</button>
+            </Link>
+            <button>Delete</button>
+            <button onClick={closeDetailsComponnet}>Close</button>
+          </div>
+        }
       >
         <StuffDetails
-          image={props.image}
-          address={props.address}
-          description={props.description}
-          location={props.location}
-          owner={props.owner}
+          image={image}
+          address={address}
+          description={description}
+          location={location}
+          owner={owner}
         />
       </Modal>
     </Fragment>

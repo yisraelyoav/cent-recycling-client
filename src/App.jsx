@@ -11,25 +11,27 @@ import NewItemPage from "./pages/NewItem";
 function App() {
   const [token, setToken] = useState(false);
   const [userID, setUserID] = useState(false);
-
-  const login = useCallback((userID, token) => {
+  const [fName, setFname] = useState(false);
+  const login = useCallback((userID, token, fName) => {
     setToken(token);
     setUserID(userID);
+    setFname(fName);
     localStorage.setItem(
       "userData",
-      JSON.stringify({ userID: userID, token: token })
+      JSON.stringify({ userID: userID, fName: fName, token: token })
     );
   }, []);
 
   const logout = useCallback(() => {
     setToken(null);
     setUserID(null);
+    setFname(null);
     localStorage.removeItem("userData");
   }, []);
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("userData"));
     if (storedData && storedData.token) {
-      login(storedData.userID, storedData.token);
+      login(storedData.userID, storedData.token, storedData.fName);
     }
   }, [login]);
 
@@ -59,6 +61,7 @@ function App() {
         isLLoggedIn: !!token,
         token: token,
         userID: userID,
+        fName: fName,
         login: login,
         logout: logout,
       }}

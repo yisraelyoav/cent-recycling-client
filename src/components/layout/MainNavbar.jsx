@@ -34,6 +34,9 @@ export default function MainNavbar(props) {
                 <Link to="/new-item">Add New Item</Link>
               </li>
               <li>
+                <Link to="/update-item">edit item</Link>
+              </li>
+              <li>
                 <button className={classes.logoutButton} onClick={auth.logout}>
                   Logout
                 </button>
