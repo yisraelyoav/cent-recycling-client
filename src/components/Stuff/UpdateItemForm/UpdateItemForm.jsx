@@ -1,71 +1,72 @@
-import React, { Fragment, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { Fragment, useState, useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-import classes from "./NewItemForm.module.css";
+import classes from "./UpdateItemForm.module.css";
+
 import { useForm } from "../../../hooks/form-hook";
-import { AuthContext } from "../../../context/AuthContext";
+import { useHttpRequest } from "../../../hooks/http-hook";
 import Card from "../../../ui/Card/Card";
 import ErrorModal from "../../../ui/ErrorModal/ErrorModal";
-import Loader from "../../../ui/Loader/Loader";
 import Input from "../../../ui/FormElements/input/Input";
-import { useHttpRequest } from "../../../hooks/http-hook";
+import ImageUploader from "../../../ui/ImageUploader/ImageUploader";
+import Loader from "../../../ui/Loader/Loader";
+import { AuthContext } from "../../../context/AuthContext";
 
 import {
-  VALIDATOR_REQUIRE,
   VALIDATOR_MAXLENGTH,
+  VALIDATOR_REQUIRE,
 } from "../../../utils/validators";
-import ImageUploader from "../../../ui/ImageUploader/ImageUploader";
 
-export default function NewItemForm() {
+export default function UpdateItemForm() {
+  const [formState, inputHandler, setFormData] = useForm();
   const { isLoading, error, clearError, sendRequest } = useHttpRequest();
-  const nevigate = useNavigate();
+  const [loadedItem, setLoadedItem] = useState();
   const auth = useContext(AuthContext);
-  const [formState, inputHandler] = useForm(
-    {
-      title: {
-        value: "",
-        isValid: false,
-      },
-      image: {
-        value: "",
-        isValid: false,
-      },
-      address: {
-        value: "",
-        isValid: false,
-      },
-      description: {
-        value: "",
-        isValid: true,
-      },
-    },
-    false
-  );
-  const submitNewItemHandler = async (event) => {
-    event.preventDefault();
-    const formData = new FormData();
-    formData.append("title", formState.inputs.title.value);
-    formData.append("image", formState.inputs.image.value);
-    formData.append("address", formState.inputs.address.value);
-    formData.append("description", formState.inputs.description.value);
+  const itemID = useParams().itemID;
+
+  useEffect(() => {
+    const getItemByID = async () => {
+      const resData = await sendRequest(
+        `http://localhost:5000/api/items/${itemID}`,
+        "GET",
+        null,
+        {
+          authorization: "Bearer " + auth.token,
+        }
+      );
+      console.log(resData);
+      setLoadedItem(resData);
+    };
+
     try {
-      await sendRequest("http://localhost:5000/api/items/", "POST", formData, {
-        authorization: "Bearer " + auth.token,
-      });
-      nevigate("/");
+      getItemByID();
     } catch (err) {}
+  }, [sendRequest, auth.token, itemID]);
+
+  const submitUpdateItemHandler = (event) => {
+    event.preventDefault();
+
+    // sendRequest(
+    //   `http://localhost:5000/api/items/${}`,
+    //   "PATCH",
+    //   {},
+    //   {
+    //     authorization: "Bearer " + auth.token,
+    //   }
+    // );
   };
   return (
     <Fragment>
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && <Loader asOverlay />}
       <Card>
-        <form onSubmit={submitNewItemHandler} className={classes.center}>
+        <form onSubmit={submitUpdateItemHandler} className={classes.center}>
           <Input
             id="title"
             element="input"
             type="text"
             lable="What do you want to giveaway?"
+            value=""
             validators={[VALIDATOR_REQUIRE()]}
             onInput={inputHandler}
             errorText="Title is required."
@@ -76,6 +77,7 @@ export default function NewItemForm() {
             element="input"
             type="text"
             lable="Address"
+            value=""
             validators={[VALIDATOR_REQUIRE()]}
             onInput={inputHandler}
             errorText="Address is required."
@@ -84,6 +86,7 @@ export default function NewItemForm() {
             id="description"
             element="textArea"
             lable="Description"
+            value=""
             isValid={true}
             onInput={inputHandler}
             validators={[VALIDATOR_MAXLENGTH(200)]}

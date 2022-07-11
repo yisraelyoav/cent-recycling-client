@@ -20,12 +20,12 @@ export default function MainNavbar(props) {
           <li>
             <Link to="/">Random Stuff</Link>
           </li>
-          {!auth.isLLoggedIn && (
+          {!auth.isLoggedIn && (
             <li>
               <Link to="/auth">Log-In</Link>
             </li>
           )}
-          {auth.isLLoggedIn && (
+          {auth.isLoggedIn && (
             <Fragment>
               <li>
                 <Link to="/my-stuff">My Stuff</Link>

@@ -6,7 +6,7 @@ import Modal from "../../../ui/Modal/Modal";
 import StuffDetails from "../StuffDetails/StuffDetails";
 import { Link } from "react-router-dom";
 export default function StuffItem(props) {
-  const { image, address, location, owner, description, title } = props;
+  const { image, address, location, owner, description, title, id } = props;
   const [showDetailsComponnet, setShowDetailsComponnet] = useState(false);
 
   const openDetailsComponnet = () => {
@@ -16,7 +16,9 @@ export default function StuffItem(props) {
     setShowDetailsComponnet(false);
   };
 
-  const editItemHandler = () => {};
+  const editItemHandler = () => {
+    "";
+  };
 
   return (
     <Fragment>
@@ -48,7 +50,7 @@ export default function StuffItem(props) {
         footerClass={classes.actions}
         footer={
           <div>
-            <Link to="/update-item">
+            <Link to={`/update-item/${id}`}>
               <button onClick={editItemHandler}>Edit</button>
             </Link>
             <button>Delete</button>

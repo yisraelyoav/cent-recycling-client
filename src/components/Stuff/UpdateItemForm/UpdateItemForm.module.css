@@ -1,0 +1,69 @@
+.center{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    }
+  .form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .control {
+    margin-bottom: 0.5rem;
+  }
+  
+  .control label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .control input,
+  .control textarea {
+    display: block;
+    font: inherit;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 0.25rem;
+    width: 100%;
+  }
+  
+  .actions {
+    margin-top: 1rem;
+    text-align: right;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .actions button {
+    font: inherit;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    color: var(--headlinesColor);
+    border: 1px solid var(--secondaryColor);
+    background-color: transparent;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+  }
+  
+  .actions button:hover,
+  .actions button:active {
+    background-color: var(--headlinesColor);
+    color: var(--secondaryColor);
+  }
+  .actions button:disabled{
+    background: #ccc;
+    color: #979797;
+    border-color: #ccc;
+    cursor: not-allowed;
+  }
+  .actions button:hover:disabled,
+  .actions  button:active:disabled {
+    background: #ccc;
+    color: #979797;
+    border-color: #ccc;
+    cursor: not-allowed;
+  }

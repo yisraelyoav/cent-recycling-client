@@ -23,3 +23,8 @@
   h4,p{
     margin:0.3rem
   }
+
+  @media (max-width: 374px) {
+    .image img {
+      width: 75%;}
+  }
