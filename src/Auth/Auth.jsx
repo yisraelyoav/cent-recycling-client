@@ -90,7 +90,7 @@ export default function Auth() {
           }),
           { "Content-Type": "application/json" }
         );
-        auth.login(res.userID, res.token);
+        auth.login(res.userID, res.token, res.fName);
       } catch (error) {}
     }
   };

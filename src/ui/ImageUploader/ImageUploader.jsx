@@ -5,7 +5,6 @@ const ImageUploader = (props) => {
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState();
   const [isValid, setIsValid] = useState(false);
-
   const filePickerRef = useRef();
 
   useEffect(() => {

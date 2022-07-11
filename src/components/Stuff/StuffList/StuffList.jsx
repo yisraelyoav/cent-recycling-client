@@ -14,6 +14,7 @@ export default function StuffList(props) {
           description={Item.description}
           location={Item.location}
           owner={Item.owner}
+          onDeleteItem={props.onDeleteItem}
         />
       ))}
     </ul>

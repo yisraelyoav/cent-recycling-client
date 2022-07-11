@@ -13,7 +13,6 @@
 .image img {
   border-radius: 6px;
   width: 70%;
-  /* object-fit: contain; */
 }
 
 .content {
@@ -33,7 +32,6 @@
   width: 100%;
 }
 .actions {
-  padding: 1.5rem;
   text-align: center;
 }
 
@@ -43,6 +41,7 @@
   color: var(--headlinesColor);
   border: 1px solid var(--secondaryColor);
   background-color: transparent;
+  margin:  0.5rem;
   padding: 0.5rem 1.5rem;
   border-radius: 4px;
 
@@ -55,4 +54,11 @@
   box-shadow: 0 1px 8px var(--secondaryColor);
 
 
+}
+
+@media (max-width: 374px) {
+  .actions button {
+    margin:  0.3rem;
+
+  }
 }

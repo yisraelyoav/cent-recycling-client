@@ -1,14 +1,21 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 
 import classes from "./StuffItem.module.css";
 import Card from "../../../ui/Card/Card";
 import Modal from "../../../ui/Modal/Modal";
 import StuffDetails from "../StuffDetails/StuffDetails";
-import { Link } from "react-router-dom";
+import { useHttpRequest } from "../../../hooks/http-hook";
+import { AuthContext } from "../../../context/AuthContext";
+import ErrorModal from "../../../ui/ErrorModal/ErrorModal";
+import Loader from "../../../ui/Loader/Loader";
+
 export default function StuffItem(props) {
   const { image, address, location, owner, description, title, id } = props;
+  const { onDeleteItem } = props;
   const [showDetailsComponnet, setShowDetailsComponnet] = useState(false);
-
+  const { isLoading, error, clearError, sendRequest } = useHttpRequest();
+  const auth = useContext(AuthContext);
   const openDetailsComponnet = () => {
     setShowDetailsComponnet(true);
   };
@@ -16,12 +23,17 @@ export default function StuffItem(props) {
     setShowDetailsComponnet(false);
   };
 
-  const editItemHandler = () => {
-    "";
+  const deleteItemHandler = async () => {
+    await sendRequest(`http://localhost:5000/api/items/${id}`, "DELETE", null, {
+      authorization: "Bearer " + auth.token,
+    });
+    setShowDetailsComponnet(false);
+    onDeleteItem();
   };
-
   return (
     <Fragment>
+      <ErrorModal error={error} onClear={clearError} />
+      {isLoading && <Loader asOverlay />}
       <li className={classes.item}>
         <Card>
           <div className={classes.content}>
@@ -50,10 +62,15 @@ export default function StuffItem(props) {
         footerClass={classes.actions}
         footer={
           <div>
-            <Link to={`/update-item/${id}`}>
-              <button onClick={editItemHandler}>Edit</button>
-            </Link>
-            <button>Delete</button>
+            {auth.userID === owner._id && (
+              <Link to={`/update-item/${id}`}>
+                <button>Edit</button>
+              </Link>
+            )}
+            {auth.userID === owner._id && (
+              <button onClick={deleteItemHandler}>Delete</button>
+            )}
+
             <button onClick={closeDetailsComponnet}>Close</button>
           </div>
         }

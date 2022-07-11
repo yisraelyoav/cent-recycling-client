@@ -6,7 +6,7 @@ export default function ErrorModal(props) {
   return (
     <Modal
       onCancel={props.onClear}
-      header="Error"
+      header="Some error occurred"
       show={props.error}
       footer={
         <div className={classes.actions}>
