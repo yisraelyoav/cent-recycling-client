@@ -22,7 +22,7 @@ export default function MainNavbar(props) {
           </li>
           {!auth.isLoggedIn && (
             <li>
-              <Link to="/auth">Log-In</Link>
+              <Link to="/auth">Auth</Link>
             </li>
           )}
           {auth.isLoggedIn && (

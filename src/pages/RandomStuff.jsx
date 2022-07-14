@@ -24,7 +24,7 @@ export default function RandomStuffPage() {
     <Fragment>
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && <Loader asOverlay />}
-      <h2>Random Stuff</h2>
+      <h2>Random Recycling Stuff</h2>
       {loadedItems && (
         <StuffList items={loadedItems} onDeleteItem={getAllItems} />
       )}

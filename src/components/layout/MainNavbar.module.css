@@ -14,7 +14,7 @@
   text-decoration:none;
   font-weight: bold;
   font-size: 1rem;
-  color: var(--headlineColor);
+  color: var(--backgroundColor);
   display: block;
 }
 .hr{
@@ -33,7 +33,7 @@
   border: none;
   font-weight: bold;
   font-size: 1rem;
-  color: var(--headlineColor);
+  color: var(--backgroundColor);
   display: block;
 }
  .logoutButton:hover,
@@ -59,7 +59,7 @@
     display: flex;
     width: 100%;
     text-decoration: underline ;
-    text-decoration-color:var(--headlinesColor);
+    text-decoration-color:var(--backgroundColor);
     justify-content: center;
     text-align: center;
     padding: 0.2rem 0.5rem;

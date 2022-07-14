@@ -10,7 +10,9 @@
   flex-direction: column;
   padding: 1rem;
 }
-
+.formCard{
+  width:unset
+}
 .control {
   margin-bottom: 0.5rem;
 }

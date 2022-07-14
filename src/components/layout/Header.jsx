@@ -16,7 +16,8 @@ export default function Header() {
   const content = (
     <header className={classes.header}>
       <div className={classes.headerHead}>
-        <div className={classes.logo}>¢ent</div>
+        <h3 className={classes.logo}>¢ent-</h3>
+        <h3>Recycling project</h3>
         {auth.token && (
           <h4 className={classes.userName}>{`Hello ${auth.fName}`}</h4>
         )}

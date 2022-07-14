@@ -2,4 +2,16 @@
   margin: 3rem auto;
   width: 90%;
   max-width: 35rem;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (max-width: 608px) {
+  .main {
+    margin: 3rem auto;
+    width: 90%;
+    max-width: max-content;
+
+  }
+
 }
