@@ -21,8 +21,8 @@
   .actions button {
     font: inherit;
     cursor: pointer;
-    color: var(--primaryColor);
-    border: 1px solid var(--primaryColor);
+    color: var(--tertiaryColor);
+    border: 1px solid var(--tertiaryColor);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     background-color: transparent;
     padding: 0.5rem 1.5rem;
@@ -31,10 +31,9 @@
   
   .actions button:hover,
   .actions button:active {
-    background-color: var(--primaryColor);
-    color: var(--secondaryColor);
-    border:1px solid var(--secondaryColor);
-    box-shadow: 0 1px 8px var(--primaryColor);
+    background: var(--primaryColor);
+    color: var(--headlinesColor);
+    box-shadow: 0 1px 8px var(--tertiaryColor);
   
   }
 .actions button:disabled,

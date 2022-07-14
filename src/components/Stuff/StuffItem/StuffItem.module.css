@@ -16,7 +16,7 @@
 }
 
 .content {
-  color: var(--secondaryColor);
+  color: var(--tertiaryColor);
   text-align: center;
   padding: 1rem;
 }
@@ -24,7 +24,7 @@
 .content h2 {
   margin: 00.5rem;
   font-size: 1.5rem;
-  color: var(--headlinesColor);
+  color:black;
 }
 
 .map{
@@ -38,8 +38,8 @@
 .actions button {
   font: inherit;
   cursor: pointer;
-  color: var(--headlinesColor);
-  border: 1px solid var(--secondaryColor);
+  color: var(--tertiaryColor);
+  border: 1px solid var(--tertiaryColor);
   background-color: transparent;
   margin:  0.5rem;
   padding: 0.5rem 1.5rem;
@@ -49,9 +49,9 @@
 
 .actions button:hover,
 .actions button:active {
-  background-color: var(--headlinesColor);
-  color: var(--secondaryColor);
-  box-shadow: 0 1px 8px var(--secondaryColor);
+  background: var(--primaryColor);
+  color: var(--headlinesColor);
+  box-shadow: 0 1px 8px var(--tertiaryColor);
 
 
 }

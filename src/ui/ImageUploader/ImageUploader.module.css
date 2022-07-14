@@ -11,7 +11,7 @@
     display: flex;
     width: 15rem;
     height: 9rem;
-    border: 1.5px solid var(--secondaryColor);
+    border: 1.5px solid var(--tertiaryColor);
     margin: 1rem;
     text-align: center;
     justify-content: center;
@@ -38,7 +38,7 @@
     font: inherit;
     cursor: pointer;
     color: var(--headlinesColor);
-    border: 1px solid var(--secondaryColor);
+    border: 1px solid var(--tertiaryColor);
     background-color: transparent;
     padding: 0.5rem 1.5rem;
     border-radius: 4px;
@@ -46,7 +46,9 @@
   
   .actions button:hover,
   .actions button:active {
-    background-color: var(--headlinesColor);
-    color: var(--secondaryColor);
+    background: var(--primaryColor);
+    color: var(--headlinesColor);
+    box-shadow: 0 1px 8px black;
+
   }
   

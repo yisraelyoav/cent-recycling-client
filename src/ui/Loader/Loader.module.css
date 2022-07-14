@@ -12,7 +12,7 @@
     margin: 1px;
     border-radius: 50%;
     border: 5px solid #510077;
-    border-color: var(--headlinesColor) transparent var(--secondaryColor) transparent;
+    border-color: var(--secondaryColor) transparent var(--tertiaryColor) transparent;
     animation: ldsDualRing 1.2s linear infinite;
   }
   

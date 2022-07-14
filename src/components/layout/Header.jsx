@@ -2,7 +2,7 @@ import { React, useState, useContext } from "react";
 import ReactDOM from "react-dom";
 
 import ToggleButton from "../../ui/ToggleButton/ToggleButton";
-import clasess from "./Header.module.css";
+import classes from "./Header.module.css";
 import MainNavbar from "./MainNavbar";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -14,10 +14,12 @@ export default function Header() {
     setToggleNavbar(!toggleNavbar);
   }
   const content = (
-    <header className={clasess.header}>
-      <div className={clasess.headerHead}>
-        <div className={clasess.logo}>¢ent</div>
-        {auth.token && <h4>{`Hello ${auth.fName}`}</h4>}
+    <header className={classes.header}>
+      <div className={classes.headerHead}>
+        <div className={classes.logo}>¢ent</div>
+        {auth.token && (
+          <h4 className={classes.userName}>{`Hello ${auth.fName}`}</h4>
+        )}
         <ToggleButton onClick={MainNavHandler} />
       </div>
       <MainNavbar toggleNavbar={toggleNavbar} onClick={MainNavHandler} />

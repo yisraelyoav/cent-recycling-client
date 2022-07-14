@@ -1,7 +1,7 @@
 :root {
-  --primaryColor: #559e54;
-  --secondaryColor: #fba90a;
-  --headlinesColor: #9a0794;
-  --backgroundColor: #f7ebd4;
-  --tertiaryColor: #0a3409;
+  --primaryColor:linear-gradient(to top left, #0099cc 0%, #00cc99 100%);
+  --secondaryColor: #ea3c30;
+  --headlinesColor: #000000;
+  --backgroundColor:#ffffff;
+  --tertiaryColor: #00acb9 ;
 }

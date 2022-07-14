@@ -1,4 +1,3 @@
-@import "../../colorPlate.css";
 .header {
   position:absolute;
   top: 0;
@@ -7,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--primaryColor);
+  background: var(--primaryColor);
 }
 .headerHead{
   display: flex;
@@ -22,6 +21,9 @@
 }
 .logo:hover{
   transform: rotate(360deg)
+}
+.userName{
+  color:var(--headlinesColor);
 }
 .badge {
   background-color: var(--primaryColor);

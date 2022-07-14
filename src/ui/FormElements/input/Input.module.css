@@ -29,9 +29,11 @@
     outline: none;
     border: 3px solid;
     background: #ebebeb;
-    border-color: var(--secondaryColor);
+    border-color: var(--tertiaryColor);
   }
-  
+  label{
+    color: var(--tertiaryColor);
+  }
   .formControlInvalid label,
   .formControlInvalid p {
     color: red;

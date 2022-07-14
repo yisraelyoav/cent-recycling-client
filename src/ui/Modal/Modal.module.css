@@ -19,7 +19,7 @@
 .modalHeader {
   width: 100%;
   padding:  0.3rem;
-  background: var(--secondaryColor);
+  background: var(--primaryColor);
   color: white;
   border-radius: 6px 6px 0 0;
 
