@@ -18,7 +18,7 @@
    padding-inline:1rem
   }
   h4{
-    color: var(--secondaryColor)
+    color: var(--headlinesColor)
   }
   h4,p{
     margin:0.3rem

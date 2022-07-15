@@ -46,7 +46,7 @@ export default function StuffItem(props) {
             <div>
               <p>{description}</p>
             </div>
-            <div>{address}</div>
+            <div>location: {address}</div>
           </div>
           <div className={classes.actions}>
             <button onClick={openDetailsComponnet}>Details</button>

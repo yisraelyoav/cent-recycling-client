@@ -12,7 +12,7 @@
   align-items: center;
     }
 .logo {
-  color: var(--secondaryColor);
+  color: var(--tertiaryColor);
   margin: 0.5rem;
  transition: transform .4s ease-in-out;
 }
@@ -24,7 +24,9 @@ h3{
  
 }
 .userName{
-  color:var(--backgroundColor);
+  color:var(--tertiaryColor);
+  text-shadow: 0 1px 6px var(--headlinesColor);
+
 }
 .badge {
   background-color: var(--primaryColor);

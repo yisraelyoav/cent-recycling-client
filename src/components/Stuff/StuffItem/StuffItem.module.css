@@ -16,7 +16,7 @@
 }
 
 .content {
-  color: var(--tertiaryColor);
+  color: var(--headlinesColor);
   text-align: center;
   padding: 1rem;
 }
@@ -24,7 +24,7 @@
 .content h2 {
   margin: 00.5rem;
   font-size: 1.5rem;
-  color:black;
+  color:var(--headlinesColor);
 }
 
 .map{

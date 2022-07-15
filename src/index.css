@@ -7,7 +7,8 @@
 body {
   font-family: "Open Sans", sans-serif;
   margin: 0;
-  background-color: var(--backgroundColor);
+  background-image: url(./ui/background-image/forest.jpg);
+  background-size: cover;
   color: var(--headlinesColor);
   min-width: 200px;
 }
@@ -21,4 +22,6 @@ h2 {
   text-align: center;
   font-size: 1.5rem;
   color: var(--tertiaryColor);
+  text-shadow: 0 1px 2px var(--headlinesColor);
+
 }

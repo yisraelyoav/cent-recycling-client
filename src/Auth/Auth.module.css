@@ -46,11 +46,11 @@
 .switchModeButton{
   background-color: transparent;
   border: none;
-  color: var(--secondaryColor);
+  color: var(--tertiaryColor);
   text-decoration: underline;
 }
 .switchModeButton:hover,
 .switchModeButton:active{
-  color: var(--secondaryColor);
+  color: var(--headlinesColor);
 cursor: pointer;
 }

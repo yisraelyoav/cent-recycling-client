@@ -20,13 +20,13 @@
   width: 100%;
   padding:  0.3rem;
   background: var(--primaryColor);
-  color: white;
   border-radius: 6px 6px 0 0;
 
 }
 
 .modalHeader h2 {
   margin: 0.5rem;
+  color: var(--secondaryColor);
 }
 
 .modalContent {
