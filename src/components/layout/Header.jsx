@@ -17,7 +17,7 @@ export default function Header() {
     <header className={classes.header}>
       <div className={classes.headerHead}>
         <h3 className={classes.logo}>¢ent-</h3>
-        <h3>Recycling project</h3>
+        <h3>let's recycle</h3>
         {auth.token && (
           <h4 className={classes.userName}>{`Hello ${auth.fName}`}</h4>
         )}

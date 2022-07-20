@@ -47,7 +47,7 @@
   .actions button:hover,
   .actions button:active {
     background: var(--primaryColor);
-    color: var(--headlinesColor);
+    color: var(--secondaryColor);
     box-shadow: 0 1px 8px black;
 
   }
