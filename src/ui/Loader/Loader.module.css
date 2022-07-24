@@ -11,9 +11,9 @@
     height: 2.785rem;
     margin: 1px;
     border-radius: 50%;
-    border: 5px solid #57037e;
+    border: 5px solid #fcfcfc;
     border-color: #006600 transparent var(--tertiaryColor) transparent;
-    animation: ldsDualRing 1.2s linear infinite;
+    animation: ldsDualRing 0.4s linear infinite;
   }
   
   .loadingSpinnerOverlay {

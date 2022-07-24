@@ -24,9 +24,14 @@ export default function StuffItem(props) {
   };
 
   const deleteItemHandler = async () => {
-    await sendRequest(`http://localhost:5000/api/items/${id}`, "DELETE", null, {
-      authorization: "Bearer " + auth.token,
-    });
+    await sendRequest(
+      `${process.env.REACT_APP_BACKEND_URL}api/items/${id}`,
+      "DELETE",
+      null,
+      {
+        authorization: "Bearer " + auth.token,
+      }
+    );
     setShowDetailsComponnet(false);
     onDeleteItem();
   };
@@ -40,7 +45,10 @@ export default function StuffItem(props) {
             <h2>{title}</h2>
           </div>
           <div className={classes.image}>
-            <img src={`http://localhost:5000/${image}`} alt={title} />
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}${image}`}
+              alt={title}
+            />
           </div>
           <div className={classes.content}>
             <div>

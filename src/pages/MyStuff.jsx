@@ -14,7 +14,7 @@ export default function MyStuff() {
   useEffect(() => {
     const getItemsByUserID = async () => {
       const resData = await sendRequest(
-        "http://localhost:5000/api/items/byuser/" + auth.userID,
+        process.env.REACT_APP_BACKEND_URL+"api/items/byuser/" + auth.userID,
         "GET",
         null,
         {

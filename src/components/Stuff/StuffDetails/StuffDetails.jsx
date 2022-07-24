@@ -7,7 +7,7 @@ export default function StuffDetails(props) {
   return (
     <div>
       <div className={classes.image}>
-        <img src={`http://localhost:5000/${image}`} alt={title} />
+        <img src={`${process.env.REACT_APP_BACKEND_URL}${image}`} alt={title} />
       </div>
       <p>{description}</p>
       <div className={classes.ownerDetails}>

@@ -9,7 +9,9 @@ export default function RandomStuffPage() {
   const { isLoading, error, clearError, sendRequest } = useHttpRequest();
 
   const getAllItems = useCallback(async () => {
-    const resData = await sendRequest("http://localhost:5000/api/items");
+    const resData = await sendRequest(
+      process.env.REACT_APP_BACKEND_URL + "api/items"
+    );
     console.log(resData);
     setLoadedItems(resData);
   }, [sendRequest]);

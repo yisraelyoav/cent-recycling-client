@@ -14,7 +14,7 @@ export default function UpdateItemPage() {
   useEffect(() => {
     const getItemByID = async () => {
       const resData = await sendRequest(
-        `http://localhost:5000/api/items/${itemID}`,
+        `${process.env.REACT_APP_BACKEND_URL}api/items/${itemID}`,
         "GET",
         null,
         {

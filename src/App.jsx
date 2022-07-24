@@ -1,14 +1,20 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 
 import { AuthContext } from "./context/AuthContext";
 import Layout from "./components/layout/Layout";
-import Auth from "./Auth/Auth";
+// import Auth from "./Auth/Auth";
 import RandomStuffPage from "./pages/RandomStuff";
-import MyStuffPage from "./pages/MyStuff";
-import NewItemPage from "./pages/NewItem";
-import UpdateItemPage from "./pages/UpdateItem";
+// import MyStuffPage from "./pages/MyStuff";
+// import NewItemPage from "./pages/NewItem";
+// import UpdateItemPage from "./pages/UpdateItem";
 import { useAuth } from "./hooks/auth-hook";
+import Loader from "./ui/Loader/Loader";
+
+const Auth = React.lazy(() => import("./Auth/Auth"));
+const MyStuffPage = React.lazy(() => import("./pages/MyStuff"));
+const NewItemPage = React.lazy(() => import("./pages/NewItem"));
+const UpdateItemPage = React.lazy(() => import("./pages/UpdateItem"));
 
 function App() {
   const { token, userID, fName, login, logout } = useAuth();
@@ -45,7 +51,17 @@ function App() {
         logout: logout,
       }}
     >
-      <Layout>{routes}</Layout>
+      <Layout>
+        <Suspense
+          fallback={
+            <div className="center">
+              <Loader />
+            </div>
+          }
+        >
+          {routes}
+        </Suspense>
+      </Layout>
     </AuthContext.Provider>
   );
 }

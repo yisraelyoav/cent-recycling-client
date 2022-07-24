@@ -49,9 +49,14 @@ export default function NewItemForm() {
     formData.append("address", formState.inputs.address.value);
     formData.append("description", formState.inputs.description.value);
     try {
-      await sendRequest("http://localhost:5000/api/items/", "POST", formData, {
-        authorization: "Bearer " + auth.token,
-      });
+      await sendRequest(
+        process.env.REACT_APP_BACKEND_URL + "api/items/",
+        "POST",
+        formData,
+        {
+          authorization: "Bearer " + auth.token,
+        }
+      );
       nevigate("/");
     } catch (err) {}
   };
