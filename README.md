@@ -8,7 +8,7 @@
 
 ## General info
 
-This project is demo of web application for recycling stuff
+This project is demo web application for recycling stuff
 
 ## Technologies
 
