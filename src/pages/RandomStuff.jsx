@@ -10,7 +10,7 @@ export default function RandomStuffPage() {
 
   const getAllItems = useCallback(async () => {
     const resData = await sendRequest(
-      process.env.REACT_APP_BACKEND_URL + "api/items"
+      process.env_production.REACT_APP_BACKEND_URL + "api/items"
     );
     console.log(resData);
     setLoadedItems(resData);

@@ -25,7 +25,7 @@ export default function StuffItem(props) {
 
   const deleteItemHandler = async () => {
     await sendRequest(
-      `${process.env.REACT_APP_BACKEND_URL}api/items/${id}`,
+      `${process.env_production.REACT_APP_BACKEND_URL}api/items/${id}`,
       "DELETE",
       null,
       {
@@ -46,7 +46,7 @@ export default function StuffItem(props) {
           </div>
           <div className={classes.image}>
             <img
-              src={`${process.env.REACT_APP_BACKEND_URL}${image}`}
+              src={`${process.env_production.REACT_APP_BACKEND_URL}${image}`}
               alt={title}
             />
           </div>

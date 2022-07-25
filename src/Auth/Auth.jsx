@@ -66,7 +66,7 @@ export default function Auth() {
     if (isLoginMode) {
       try {
         const res = await sendRequest(
-          process.env.REACT_APP_BACKEND_URL + "api/users/login",
+          process.env_production.REACT_APP_BACKEND_URL + "api/users/login",
           "POST",
           JSON.stringify({
             email: formState.inputs.email.value,
@@ -79,7 +79,7 @@ export default function Auth() {
     } else {
       try {
         const res = await sendRequest(
-          process.env.REACT_APP_BACKEND_URL + "api/users/signup",
+          process.env_production.REACT_APP_BACKEND_URL + "api/users/signup",
           "POST",
           JSON.stringify({
             fName: formState.inputs.fName.value,
