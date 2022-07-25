@@ -50,7 +50,7 @@ export default function NewItemForm() {
     formData.append("description", formState.inputs.description.value);
     try {
       await sendRequest(
-        process.env_production.REACT_APP_BACKEND_URL + "api/items/",
+        process.env.REACT_APP_BACKEND_URL + "api/items/",
         "POST",
         formData,
         {
